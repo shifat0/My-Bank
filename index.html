@@ -35,7 +35,7 @@
                 <div class="col-md-4">
                     <div class="withdraw status">
                         <h5>Withdraw</h5>
-                        <h2>$00</h2>
+                        <h2>$ <span id="currentWithdraw">00</span></h2>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -58,16 +58,18 @@
                 <div class="col-md-6">
                     <div class="submit-area">
                         <h5>Withdraw</h5>
-                        <input type="text" class="form-control" placeholder="$ amount you want to withdraw">
+                        <input id="withdrawAmount" type="text" class="form-control"
+                            placeholder="$ amount you want to withdraw">
                         <br>
-                        <button class="btn btn-success">Withdraw</button>
+                        <button id="addwithdraw" class="btn btn-success">Withdraw</button>
                     </div>
                 </div>
             </div>
         </div>
 
         <script>
-            //login btn event handler
+
+            //***Login btn event handler***
             const loginBtn = document.getElementById("login");
             loginBtn.addEventListener("click", function () {
                 const loginArea = document.getElementById("login-area");
@@ -79,8 +81,9 @@
             //***Deposit btn event handler***
             const depositBtn = document.getElementById("addDeposit");
             depositBtn.addEventListener("click", function () {
-                const depositAmount = document.getElementById("depositAmount").value;
-                const depositAmountNumber = parseFloat(depositAmount);
+                // const depositAmount = document.getElementById("depositAmount").value;
+                // const depositAmountNumber = parseFloat(depositAmount);
+                const depositAmountNumber = addAmount("depositAmount"); //***Using Function***
 
                 //***Deposit event handler***
 
@@ -89,6 +92,9 @@
 
                 // const totalDeposit = depositAmountNumber + currentDepositNumber;
                 // document.getElementById("currentDeposit").innerHTML = totalDeposit;
+
+                //***Using Function(less line of code)***
+                updateAmount("currentDeposit", depositAmountNumber);
 
                 //***Balance Event Handler***
 
@@ -99,9 +105,33 @@
                 // document.getElementById("currentBalance").innerHTML = totalBalalnce;
 
                 //***Using Function(less line of code)***
-                updateAmount("currentDeposit", depositAmountNumber);
                 updateAmount("currentBalance", depositAmountNumber);
+
+                document.getElementById("depositAmount").value = "";
+
             })
+
+            //***Withdraw Button event handler***
+
+            const withdrawBtn = document.getElementById("addwithdraw");
+            withdrawBtn.addEventListener("click", function () {
+                // const withdrawAmount = document.getElementById("withdrawAmount").value;
+                // const withdrawNumber = parseFloat(withdrawAmount);
+                const withdrawAmountNumber = addAmount("withdrawAmount"); //***Using Function***
+
+                //Withdraw Event Handler
+                updateAmount("currentWithdraw", withdrawAmountNumber);
+                updateAmount("currentBalance", -1 * withdrawAmountNumber);
+
+                document.getElementById("withdrawAmount").value = "";
+            })
+
+            function addAmount(id) {
+                const amount = document.getElementById(id).value;
+                const amountNumber = parseFloat(amount);
+                return amountNumber;
+            }
+
             function updateAmount(id, depositAmountNumber) {
                 const current = document.getElementById(id).innerHTML;
                 const currentNumber = parseFloat(current);
@@ -111,7 +141,7 @@
             }
 
         </script>
-        <!-- <script src="js/bootstrap.min.js"></script> -->
+
     </body>
 
 </html>
