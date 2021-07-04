@@ -76,25 +76,40 @@
                 transactionArea.style.display = "block";
             })
 
-            //deposit btn event handler
+            //***Deposit btn event handler***
             const depositBtn = document.getElementById("addDeposit");
             depositBtn.addEventListener("click", function () {
                 const depositAmount = document.getElementById("depositAmount").value;
                 const depositAmountNumber = parseFloat(depositAmount);
 
-                const currentDeposit = document.getElementById("currentDeposit").innerHTML;
-                const currentDepositNumber = parseFloat(currentDeposit);
+                //***Deposit event handler***
 
-                const totalDeposit = depositAmountNumber + currentDepositNumber;
-                document.getElementById("currentDeposit").innerHTML = totalDeposit;
+                // const currentDeposit = document.getElementById("currentDeposit").innerHTML;
+                // const currentDepositNumber = parseFloat(currentDeposit);
 
-                //Balance Event Handler
-                const currentBalance = document.getElementById("currentBalance").innerHTML;
-                const currentBalanceNumber = parseFloat(currentBalance);
+                // const totalDeposit = depositAmountNumber + currentDepositNumber;
+                // document.getElementById("currentDeposit").innerHTML = totalDeposit;
 
-                const totalBalalnce = depositAmountNumber + currentBalanceNumber;
-                document.getElementById("currentBalance").innerHTML = totalBalalnce;
+                //***Balance Event Handler***
+
+                // const currentBalance = document.getElementById("currentBalance").innerHTML;
+                // const currentBalanceNumber = parseFloat(currentBalance);
+
+                // const totalBalalnce = depositAmountNumber + currentBalanceNumber;
+                // document.getElementById("currentBalance").innerHTML = totalBalalnce;
+
+                //***Using Function(less line of code)***
+                updateAmount("currentDeposit", depositAmountNumber);
+                updateAmount("currentBalance", depositAmountNumber);
             })
+            function updateAmount(id, depositAmountNumber) {
+                const current = document.getElementById(id).innerHTML;
+                const currentNumber = parseFloat(current);
+
+                const totalAmount = depositAmountNumber + currentNumber;
+                document.getElementById(id).innerHTML = totalAmount;
+            }
+
         </script>
         <!-- <script src="js/bootstrap.min.js"></script> -->
     </body>
