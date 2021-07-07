@@ -14,6 +14,17 @@ depositBtn.addEventListener("click", function () {
   // const depositAmountNumber = parseFloat(depositAmount);
   const depositAmountNumber = addAmount("depositAmount"); //***Using Function***
 
+  if (depositAmountNumber < 0) {
+    alert("Deposit Amount can't be negative");
+  } else {
+    //***Deposit event handler Using Function(less line of code)***
+    updateAmount("currentDeposit", depositAmountNumber);
+    //***Balance Event Handler Using Function(less line of code)***
+    updateAmount("currentBalance", depositAmountNumber);
+
+    document.getElementById("depositAmount").value = "";
+  }
+
   //***Deposit event handler***
 
   // const currentDeposit = document.getElementById("currentDeposit").innerHTML;
@@ -22,9 +33,6 @@ depositBtn.addEventListener("click", function () {
   // const totalDeposit = depositAmountNumber + currentDepositNumber;
   // document.getElementById("currentDeposit").innerHTML = totalDeposit;
 
-  //***Using Function(less line of code)***
-  updateAmount("currentDeposit", depositAmountNumber);
-
   //***Balance Event Handler***
 
   // const currentBalance = document.getElementById("currentBalance").innerHTML;
@@ -32,11 +40,6 @@ depositBtn.addEventListener("click", function () {
 
   // const totalBalalnce = depositAmountNumber + currentBalanceNumber;
   // document.getElementById("currentBalance").innerHTML = totalBalalnce;
-
-  //***Using Function(less line of code)***
-  updateAmount("currentBalance", depositAmountNumber);
-
-  document.getElementById("depositAmount").value = "";
 });
 
 //***Withdraw Button event handler***
